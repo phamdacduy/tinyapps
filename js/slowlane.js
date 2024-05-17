@@ -10,8 +10,6 @@ function updateChart() {
   );
   const annualIncrease =
     parseFloat(document.getElementById('annualIncrease').value) / 100;
-  const salaryJump =
-    parseFloat(document.getElementById('salaryJump').value) / 100;
   const interestRate =
     parseFloat(document.getElementById('interestRate').value) / 100;
   const spendingRate =
@@ -26,6 +24,7 @@ function updateChart() {
   let salaryHistory = [];
   let increaseHistory = []; // Store annual increase percentage
   let savingsHistory = [];
+  let interestHistory = []; // Store annual interest
   let cumulativeSavings = [];
   let years = [];
   let annualSavings = 0;
@@ -34,11 +33,7 @@ function updateChart() {
     years.push(year);
 
     // Calculate annual increase percentage
-    let currentAnnualIncrease = annualIncrease * 100; // Start with default annual increase
-    if ((year + 1) % 3 === 0) {
-      salary *= 1 + salaryJump; // Apply salary jump every 3 years
-      currentAnnualIncrease = salaryJump * 100; // Set annual increase to salary jump percentage
-    }
+    let currentAnnualIncrease = annualIncrease * 100;
     increaseHistory.push(currentAnnualIncrease);
 
     // Calculate annual savings
@@ -49,7 +44,9 @@ function updateChart() {
     }
 
     totalSavings += annualSavings;
-    totalSavings *= 1 + interestRate; // Apply annual interest
+    let annualInterest = totalSavings * interestRate;
+    interestHistory.push(annualInterest);
+    totalSavings += annualInterest; // Apply annual interest to total savings
 
     salaryHistory.push(salary * 12); // Annual salary
     savingsHistory.push(annualSavings);
@@ -86,6 +83,13 @@ function updateChart() {
         data: savingsHistory,
         backgroundColor: 'rgba(153, 102, 255, 0.5)',
         borderColor: 'rgba(153, 102, 255, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Annual Interest (VND)',
+        data: interestHistory,
+        backgroundColor: 'rgba(255, 205, 86, 0.5)',
+        borderColor: 'rgba(255, 205, 86, 1)',
         borderWidth: 1,
       },
       {
@@ -133,6 +137,7 @@ function updateChart() {
                         <td>${salaryHistory[i].toLocaleString('en')}</td>
                         <td>${increaseHistory[i]}%</td>
                         <td>${savingsHistory[i].toLocaleString('en')}</td>
+                        <td>${interestHistory[i].toLocaleString('en')}</td>
                         <td>${cumulativeSavings[i].toLocaleString('en')}</td>
                     </tr>
                 `;
