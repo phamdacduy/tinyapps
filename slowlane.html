@@ -46,6 +46,22 @@
             <canvas id="savingsChart" width="800" height="400"></canvas>
         </div>
 
+        <div class="container mt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Year</th>
+                        <th scope="col">Annual Salary (VND)</th>
+                        <th scope="col">Annual Savings (VND)</th>
+                        <th scope="col">Cumulative Savings (VND)</th>
+                    </tr>
+                </thead>
+                <tbody id="savingsTableBody">
+                    <!-- Table rows will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+
         <script>
             let myChart = null;
 
@@ -150,6 +166,21 @@
                 };
 
                 myChart = new Chart(ctx, config); // Create new chart instance
+
+                // Update table
+                const tableBody = document.getElementById('savingsTableBody');
+                tableBody.innerHTML = '';
+                for (let i = 0; i < years.length; i++) {
+                    const row = `
+                   <tr>
+                        <td>${years[i]}</td>
+                        <td>${salaryHistory[i].toLocaleString('en')}</td>
+                        <td>${savingsHistory[i].toLocaleString('en')}</td>
+                        <td>${cumulativeSavings[i].toLocaleString('en')}</td>
+                    </tr>
+                `;
+                    tableBody.innerHTML += row;
+                }
             }
         </script>
     </body>
