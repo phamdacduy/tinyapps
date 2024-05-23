@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Investment Calculator</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/investment.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     </head>
@@ -15,7 +15,7 @@
         <div class="container mt-5">
             <h1>Investment Calculator</h1>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <form id="investment-form">
                         <div class="mb-3">
                             <label for="startingAmount" class="form-label">Starting Amount</label>
@@ -73,13 +73,9 @@
                         <button type="button" class="btn btn-primary" id="calculateBtn">Calculate</button>
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div id="results" class="mt-5">
-                        <h3>Results</h3>
-                        <p>End Balance: <span id="endBalance"></span></p>
-                        <p>Starting Amount: <span id="resultStartingAmount"></span></p>
-                        <p>Total Contributions: <span id="totalContributions"></span></p>
-                        <p>Total Interest: <span id="totalInterest"></span></p>
+
                         <canvas id="investmentChart"></canvas>
                         <table class="table mt-5" id="investmentTable">
                             <thead>
@@ -92,11 +88,16 @@
                             </thead>
                             <tbody></tbody>
                         </table>
+                        <h3>Results</h3>
+                        <p>End Balance: <span id="endBalance"></span></p>
+                        <p>Starting Amount: <span id="resultStartingAmount"></span></p>
+                        <p>Total Contributions: <span id="totalContributions"></span></p>
+                        <p>Total Interest: <span id="totalInterest"></span></p>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="script.js"></script>
+        <script src="js/investment.js"></script>
     </body>
 
 </html>
